@@ -1,0 +1,31 @@
+{
+  "name": "svelte",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "ionic:serve": "vite"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "5.0.5",
+    "@sveltejs/vite-plugin-svelte": "^2.0.4",
+    "sass": "^1.63.4",
+    "svelte": "^3.58.0",
+    "svelte-preprocess": "^5.0.4",
+    "vite": "^4.3.9"
+  },
+  "dependencies": {
+    "@capacitor/android": "^5.0.5",
+    "@capacitor/app": "5.0.3",
+    "@capacitor/core": "5.0.5",
+    "@capacitor/haptics": "5.0.4",
+    "@capacitor/keyboard": "5.0.4",
+    "@capacitor/status-bar": "5.0.4",
+    "svelte-routing": "^1.10.0",
+    "sweetalert": "^2.1.2",
+    "swiper": "^9.4.1"
+  }
+}

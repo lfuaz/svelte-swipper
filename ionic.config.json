@@ -1,0 +1,7 @@
+{
+  "name": "svelpapp.app.com",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}

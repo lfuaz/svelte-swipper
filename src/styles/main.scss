@@ -1,0 +1,207 @@
+$pink: #dcaffa;
+$yellow: #edfa9d;
+$blue: #afb2fa;
+$green: #b1facb;
+$red: #faccb1;
+$black: #3b3a3a;
+$white: #f7f9f9;
+$green-filter: invert(100%) sepia(87%) saturate(856%) hue-rotate(59deg)
+  brightness(108%) contrast(103%);
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+@import "./navbar.scss";
+//make root variables available to all files
+
+* {
+  font-family: "Righteous", cursive;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  #app {
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    main {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      background: transparent;
+    }
+  }
+}
+
+h1 {
+  color: $blue;
+  margin: 10px;
+}
+.mySwiper {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.dragme {
+  position: relative;
+  cursor: pointer;
+  height: 100%;
+  transition: all 0.1s linear;
+  img {
+    border-radius: 30px;
+    width: 90%;
+    height: 89%;
+    object-fit: cover;
+  }
+}
+
+.swiper {
+  width: 100%;
+  height: 80%;
+  border-radius: 18px;
+  z-index: 9999;
+
+  .swiper-wrapper {
+    .swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      font-size: 22px;
+      font-weight: bold;
+      color: $white;
+
+      .swiper-slide-shadow {
+        background: none;
+        padding: 10px;
+      }
+    }
+    .swiper-slide:nth-child(1n) {
+      background-color: rgb(206, 17, 17);
+    }
+
+    .swiper-slide:nth-child(2n) {
+      background-color: rgb(0, 140, 255);
+    }
+
+    .swiper-slide:nth-child(3n) {
+      background-color: rgb(10, 184, 111);
+    }
+
+    .swiper-slide:nth-child(4n) {
+      background-color: rgb(211, 122, 7);
+    }
+
+    .swiper-slide:nth-child(5n) {
+      background-color: rgb(118, 163, 12);
+    }
+
+    .swiper-slide:nth-child(6n) {
+      background-color: rgb(180, 10, 47);
+    }
+
+    .swiper-slide:nth-child(7n) {
+      background-color: rgb(35, 99, 19);
+    }
+
+    .swiper-slide:nth-child(8n) {
+      background-color: rgb(0, 68, 255);
+    }
+
+    .swiper-slide:nth-child(9n) {
+      background-color: rgb(218, 12, 218);
+    }
+
+    .swiper-slide:nth-child(10n) {
+      background-color: rgb(54, 94, 77);
+    }
+  }
+}
+
+body {
+  background-color: $white;
+  color: $black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 90%;
+}
+$input-border-color: $blue;
+
+.input-form {
+  margin-top: 20%;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 22px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-label {
+  margin-bottom: 0.5rem;
+}
+
+.input-field {
+  padding: 0.5rem;
+  border: 1px solid $input-border-color;
+  border-radius: 4px;
+  width: 40%;
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: darken($input-border-color, 10%);
+  }
+
+  &[type="submit"] {
+    background-color: $blue;
+    color: $white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    width: fit-content;
+    padding: 0.5rem 2rem;
+
+    &:hover {
+      background-color: darken($blue, 10%);
+    }
+  }
+}
+
+.textarea-field {
+  resize: none;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid $input-border-color;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.input-error-message {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
