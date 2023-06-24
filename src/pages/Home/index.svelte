@@ -92,12 +92,15 @@
 
     // calculate drag direction
     let direction = deltaX > 0 ? "right" : "left";
-
     // apply rotation based on drag direction
     if (direction === "left") {
       rotationDeg = Math.min(deltaX / 10, 15);
+      let opacity = mapRange(deltaX, 0, 200, 0, 1);
+      document.querySelectorAll(".choice")[0]["style"].opacity = opacity * -1;
     } else {
       rotationDeg = Math.max(deltaX / 10, -15);
+      let opacity = mapRange(deltaX, 0, 200, 0, 1);
+      document.querySelectorAll(".choice")[1]["style"].opacity = opacity;
     }
 
     // apply rotation to element
@@ -129,17 +132,30 @@
     stopDrag(handleDrop);
   }
 
+  function resetChoice() {
+    document.querySelectorAll(".choice").forEach((choice) => {
+      choice["style"].opacity = 0;
+    });
+  }
+
   function handleDrop() {
     // rotationDeg must have dead zone between -10 and 10 to cancel out
     if (rotationDeg > 20) {
-      console.log("right");
+      console.log("dropped right");
+      resetChoice();
     } else if (rotationDeg < -20) {
-      console.log("left");
+      console.log("dropped left");
+      resetChoice();
     } else {
-      console.log("cancel");
+      console.log("cancel moove");
+      resetChoice();
     }
 
     // Callback function to handle the drop direction
+  }
+
+  function mapRange(value, x1, y1, x2, y2) {
+    return ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
   }
 
   onMount(() => {
@@ -155,7 +171,11 @@
 
 <Layout title="home">
   <h1>Brozz</h1>
-  <div class="container-feels">
+  <div class="container">
     <div class="dragme"><img src={Chat} alt="chat" loading="lazy" /></div>
+    <div class="container_choice">
+      <div class="choice" />
+      <div class="choice" />
+    </div>
   </div>
 </Layout>
