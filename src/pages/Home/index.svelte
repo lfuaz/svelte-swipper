@@ -59,7 +59,7 @@
     // move div element
     if (e.type === "touchstart") {
       document.addEventListener("touchmove", dragDiv, { passive: false });
-      document.addEventListener("touchend", () => stopDrag(handleDrop));
+      document.addEventListener("touchend", touchEndCallback);
     } else {
       document.onmousemove = dragDiv;
       document.onmouseup = () => stopDrag(handleDrop);
@@ -95,15 +95,15 @@
 
     // apply rotation based on drag direction
     if (direction === "left") {
-      rotationDeg = Math.min(deltaX / 5, 15);
+      rotationDeg = Math.min(deltaX / 10, 15);
     } else {
-      rotationDeg = Math.max(deltaX / 5, -15);
+      rotationDeg = Math.max(deltaX / 10, -15);
     }
 
     // apply rotation to element
     targ.style.transform = `rotate(${rotationDeg}deg)`;
 
-    return false;
+    return { isRotating: false, rotationDeg };
   }
 
   function stopDrag(callback) {
@@ -111,7 +111,7 @@
     document.onmousemove = null;
     document.onmouseup = null;
     document.removeEventListener("touchmove", dragDiv);
-    document.removeEventListener("touchend", () => stopDrag(handleDrop));
+    document.removeEventListener("touchend", touchEndCallback);
 
     // Return "dragme" item to its original position and rotation
     targ.style.left = originalCoordX + "px";
@@ -125,9 +125,21 @@
     callback(direction);
   }
 
-  function handleDrop(direction) {
+  function touchEndCallback() {
+    stopDrag(handleDrop);
+  }
+
+  function handleDrop() {
+    // rotationDeg must have dead zone between -10 and 10 to cancel out
+    if (rotationDeg > 20) {
+      console.log("right");
+    } else if (rotationDeg < -20) {
+      console.log("left");
+    } else {
+      console.log("cancel");
+    }
+
     // Callback function to handle the drop direction
-    console.log("Dropped to", direction);
   }
 
   onMount(() => {
