@@ -155,5 +155,7 @@
 
 <Layout title="home">
   <h1>Brozz</h1>
-  <div class="dragme"><img src={Chat} alt="chat" loading="lazy" /></div>
+  <div class="container-feels">
+    <div class="dragme"><img src={Chat} alt="chat" loading="lazy" /></div>
+  </div>
 </Layout>

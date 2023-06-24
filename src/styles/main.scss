@@ -48,12 +48,18 @@ h1 {
   width: 100%;
   margin: 0;
 }
-
+.container-feels {
+  height: 80%;
+  width: 100%;
+  position: relative;
+}
 .dragme {
   position: relative;
   cursor: pointer;
   height: 100%;
   transition: all 0.1s linear;
+  position: relative;
+
   img {
     border-radius: 30px;
     width: 90%;
