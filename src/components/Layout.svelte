@@ -1,10 +1,11 @@
 <script>
   export let title;
 
-  import Home from "../assets/home.svg";
-  import Info from "../assets/info.svg";
-  import User from "../assets/user.svg";
-  import Zap from "../assets/zap.svg";
+  import Star from "../assets/star-solid.svg";
+  import Fire from "../assets/fire-solid.svg";
+  import Zap from "../assets/bolt-solid.svg";
+  import Otter from "../assets/otter-solid (1).svg";
+  import Message from "../assets/comment-solid.svg";
 
   const handleClick = (e) => {
     location.href = e.currentTarget.href;
@@ -23,27 +24,33 @@
 <footer>
   <nav>
     <ul>
-      <li class:active={title === "zap"}>
-        <a href="/zap" on:pointerdown={(e) => handleClick(e)}>
-          <img loading="lazy" alt="info-button" src={Info} /></a
+      <li class:active={title === "favourite"}>
+        <a href="/favourite" on:pointerdown={(e) => handleClick(e)}>
+          <img loading="lazy" alt="info-button" src={Star} /></a
         >
       </li>
 
-      <li class:active={title === "about"}>
-        <a href="/about" on:pointerdown={(e) => handleClick(e)}>
+      <li class:active={title === "zap"}>
+        <a href="/zap" on:pointerdown={(e) => handleClick(e)}>
           <img loading="lazy" alt="info-button" src={Zap} /></a
         >
       </li>
 
       <li class:active={title === "home"}>
         <a href="/" on:pointerdown={(e) => handleClick(e)}>
-          <img loading="lazy" alt="home-button" src={Home} />
+          <img loading="lazy" alt="home-button" src={Otter} />
         </a>
+      </li>
+
+      <li class:active={title === "fire"}>
+        <a href="/fire" on:pointerdown={(e) => handleClick(e)}
+          ><img loading="lazy" alt="user-button" src={Fire} /></a
+        >
       </li>
 
       <li class:active={title === "contact"}>
         <a href="/contact" on:pointerdown={(e) => handleClick(e)}
-          ><img loading="lazy" alt="user-button" src={User} /></a
+          ><img loading="lazy" alt="user-button" src={Message} /></a
         >
       </li>
     </ul>

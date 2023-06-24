@@ -1,7 +1,8 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import Layout from "../../components/Layout.svelte";
-  import Chat from "../../assets/meuf.jpg";
+  import Meuf from "../../assets/meuf.jpg";
+  import MeufJ from "../../assets/meuf-jaune.jpg";
 
   let drag = false;
   let targ;
@@ -12,6 +13,7 @@
   let originalCoordX;
   let originalCoordY;
   let rotationDeg = 0;
+  let speed = 150; //ms
 
   let startDrag = (e) => {
     // determine event object
@@ -69,6 +71,7 @@
   };
 
   function dragDiv(e) {
+    let nextImage = document.querySelector(".waiting");
     if (!drag) {
       return;
     }
@@ -97,10 +100,13 @@
       rotationDeg = Math.min(deltaX / 10, 15);
       let opacity = mapRange(deltaX, 0, 200, 0, 1);
       document.querySelectorAll(".choice")[0]["style"].opacity = opacity * -1;
+      if (opacity * -1 < 0.9 && opacity * -1 > 0.3)
+        nextImage["style"].scale = opacity * -1;
     } else {
       rotationDeg = Math.max(deltaX / 10, -15);
       let opacity = mapRange(deltaX, 0, 200, 0, 1);
       document.querySelectorAll(".choice")[1]["style"].opacity = opacity;
+      if (opacity < 0.9 && opacity > 0.3) nextImage["style"].scale = opacity;
     }
 
     // apply rotation to element
@@ -115,6 +121,9 @@
     document.onmouseup = null;
     document.removeEventListener("touchmove", dragDiv);
     document.removeEventListener("touchend", touchEndCallback);
+
+    //start animation
+    targ.style.transition = `all ${speed}ms linear`;
 
     // Return "dragme" item to its original position and rotation
     targ.style.left = originalCoordX + "px";
@@ -133,9 +142,17 @@
   }
 
   function resetChoice() {
+    let nextImage = document.querySelector(".waiting");
+
+    setTimeout(
+      () => (document.querySelector(".dragme")["style"].transition = "none"),
+      speed
+    );
     document.querySelectorAll(".choice").forEach((choice) => {
       choice["style"].opacity = 0;
     });
+    nextImage["style"].transition = "all 0.3s linear";
+    nextImage["style"].scale = 0.3;
   }
 
   function handleDrop() {
@@ -172,7 +189,8 @@
 <Layout title="home">
   <h1>Brozz</h1>
   <div class="container">
-    <div class="dragme"><img src={Chat} alt="chat" loading="lazy" /></div>
+    <div class="dragme"><img src={Meuf} alt="chat" loading="lazy" /></div>
+    <img src={MeufJ} alt="chat" loading="lazy" class="waiting" />
     <div class="container_choice">
       <div class="choice" />
       <div class="choice" />

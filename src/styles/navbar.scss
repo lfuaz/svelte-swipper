@@ -20,8 +20,8 @@ nav {
       &.active {
         background-color: $blue;
         border-radius: 50%;
-        a{
-          img{
+        a {
+          img {
             filter: invert(1);
           }
         }
@@ -31,7 +31,10 @@ nav {
         color: #3b3a3a;
         text-decoration: none;
         font-weight: 500;
-
+        img {
+          width: 25px;
+          height: 25px;
+        }
       }
     }
   }
